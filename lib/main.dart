@@ -22,24 +22,3 @@ return MaterialApp(
 );
 }
 }
-// return Scaffold(
-// appBar: AppBar(
-// title: const Text("Filmes"),
-// ),
-// body: 
-//  return Column(
-// children: [
-// ListView.builder(
-// itemBuilder: (BuildContext context, int index) {
-// return Container(
-// margin: EdgeInsets.all(8.0),
-// decoration: BoxDecoration(
-// borderRadius: BorderRadius.circular(12),
-// color: Colors.white10),
-// );
-// },
-// )
-// ],
-// );
-// }
-// // }
