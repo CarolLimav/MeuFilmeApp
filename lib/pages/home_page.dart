@@ -1,8 +1,7 @@
-
 import 'package:flutter/material.dart';
 import '../data/filme_data.dart';
 import '../models/filme_model.dart';
-import 'detalhes_filme_screen.dart';
+import 'detalhes_filme_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -28,52 +27,58 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         title: const Center(child: Text('Filmes em cartaz')),
       ),
-      body: Center(
-        child: ListView.separated(
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: GridView.builder(
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2, mainAxisSpacing: 10.0, crossAxisSpacing: 10.0),
           itemCount: listaDeFilmes.length,
-          separatorBuilder: (context, index) => const SizedBox(height: 16.0), // espaçamento entre os cards
           itemBuilder: (context, index) {
             Filme filme = listaDeFilmes[index];
             return Center(
               child: SizedBox(
-                height: 280,
-                width: 300,
-                child: Card(
-                  color: Colors.amberAccent,
-                  elevation: 4,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      GestureDetector(
-                         onTap: () {
-                       Navigator.push(
-                        context,
-                      MaterialPageRoute(
-                      builder: (context) => DetalhesFilmes(filme: filme),
-                      ),
-                    );
-                  },
-                        child: Container(
-                          height: 200,
-                          decoration: BoxDecoration(
-                            image: DecorationImage(
-                              image: NetworkImage(filme.imageUrl),
-                              fit: BoxFit.cover,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(20),
+                  child: Card(
+                    color: Colors.amberAccent,
+                    elevation: 4,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) =>
+                                      DetalhesFilmes(filme: filme),
+                                ),
+                              );
+                            },
+                            child: Container(
+                              height: 180,
+                              decoration: BoxDecoration(
+                                image: DecorationImage(
+                                  image: NetworkImage(filme.imageUrl),
+                                  fit: BoxFit.cover,
+                                ),
+                                borderRadius: BorderRadius.circular(12),
+                              ),
+                            )),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 8.0),
+                          child: Center(
+                            child: Text(
+                              filme.nome,
+                              style: const TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                  color: Color.fromARGB(255, 84, 177, 253)),
                             ),
                           ),
                         ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: Text(
-                          filme.nome,
-                          style: const TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ),
@@ -84,8 +89,3 @@ class HomePage extends StatelessWidget {
     );
   }
 }
-
-
-
-
-
