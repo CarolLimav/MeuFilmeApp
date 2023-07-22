@@ -2,23 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:meufilmeapp/pages/home_page.dart';
 
 void main() {
-runApp(const MyApp());
+  runApp(const MyApp());
 }
-
 
 class MyApp extends StatelessWidget {
-const MyApp({super.key});
+  const MyApp({super.key});
 
-
-@override
-Widget build(BuildContext context) {
-return MaterialApp(
-  title: "Filmes",
-  theme: ThemeData(
-    primarySwatch: Colors.amber
-  ),
-  home:HomePage(),
-  debugShowCheckedModeBanner: false,
-);
-}
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: "Filmes",
+      theme: ThemeData(primarySwatch: Colors.amber),
+      home: const HomePage(),
+      debugShowCheckedModeBanner: false,
+    );
+  }
 }
