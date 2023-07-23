@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:meufilmeapp/pages/informations_page.dart';
 import '../models/filme_model.dart';
 
 class DetalhesFilmes extends StatelessWidget {
@@ -35,15 +36,26 @@ class DetalhesFilmes extends StatelessWidget {
                     style:
                         TextStyle(fontSize: 19, fontWeight: FontWeight.bold)),
                 const SizedBox(height: 10),
-                Text(filme.descricao, style: const TextStyle(fontWeight: FontWeight.bold),),
-                const SizedBox(height: 10,),
+                Text(
+                  filme.descricao,
+                  style: const TextStyle(fontWeight: FontWeight.bold),
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
                 Text(filme.sinopse),
                 const SizedBox(height: 20),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const Informations(),
+                              ));
+                        },
                         child: const Text(
                           "Comprar Ingresso",
                           style: TextStyle(color: Colors.white),
