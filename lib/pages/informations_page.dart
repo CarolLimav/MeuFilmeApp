@@ -1,6 +1,9 @@
 // ignore_for_file: file_names
 
+import 'dart:math';
+
 import 'package:flutter/material.dart';
+import 'package:meufilmeapp/pages/assento_page.dart';
 
 class Week {
   late bool select;
@@ -17,8 +20,21 @@ class Informations extends StatefulWidget {
 
 class _InformationsState extends State<Informations> {
   List<Week> days = [];
+  List<String> horarios = [];
   int indice = -1;
   bool? inteiraCheck = false;
+  List<String> horas = [
+    "18:00",
+    "19:30",
+    "21:30",
+    "22:10",
+    "19:10",
+    "19:20",
+    "20:05",
+    "23:00",
+    "20:30",
+    "21:45"
+  ];
   bool? meiaCheck = false;
   bool? estudanteCheck = false;
 
@@ -38,8 +54,19 @@ class _InformationsState extends State<Informations> {
     days.add(Week(select: false, day: "DOM"));
   }
 
+  void changeData() {
+    horarios.clear();
+    Random random = Random();
+    int count = random.nextInt(5) + 2;
+    for (var i = 0; i < count; i++) {
+      horarios.add(horas[random.nextInt(10)]);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    double? width = MediaQuery.of(context).size.width;
+
     return Scaffold(
       appBar: AppBar(
         title: const Center(
@@ -53,6 +80,7 @@ class _InformationsState extends State<Informations> {
           children: [
             SizedBox(
               height: 100,
+              width: width,
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
                 padding: const EdgeInsets.all(25),
@@ -66,11 +94,12 @@ class _InformationsState extends State<Informations> {
                           days[indice].select = !days[indice].select;
                         }
                         indice = index;
+                        changeData();
                       }
                     });
                   },
                   child: Container(
-                    width: 100,
+                    width: width * 0.13,
                     height: 100,
                     color: days[index].select ? Colors.green : Colors.blue,
                     child: Center(
@@ -87,13 +116,55 @@ class _InformationsState extends State<Informations> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(10.0),
               child: Container(
-                height: 300,
+                width: 60,
+                alignment: Alignment.topLeft,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20.0),
+                    color: Colors.yellow),
+                child: const Center(
+                  child:  Text(
+                    "Horários",
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Container(
+                height: 100,
+                width: width,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20.0),
-                  color: Colors.greenAccent,
+                  color: const Color.fromARGB(255, 250, 236, 236),
                 ),
+                child: horarios.isEmpty
+                    ? const Center(
+                        child: Text("Escolha o Dia"),
+                      )
+                    : ListView.builder(
+                        shrinkWrap: true,
+                        scrollDirection: Axis.horizontal,
+                        itemCount: horarios.length,
+                        itemBuilder: (context, index) => GestureDetector(
+                          onTap: () {},
+                          child: Padding(
+                            padding: const EdgeInsets.all(10.0),
+                            child: Container(
+                              width: 50,
+                              height: 25,
+                              decoration: BoxDecoration(
+                                border: Border.all(),
+                                borderRadius: BorderRadius.circular(5.0),
+                                color: Colors.white
+                              ),
+                              child: Center(child: Text(horarios[index])),
+                            ),
+                          ),
+                        ),
+                      ),
               ),
             ),
             SizedBox(
@@ -115,7 +186,7 @@ class _InformationsState extends State<Informations> {
                   ),
                   ListTile(
                     title: const Text("MEIA ENTRADA"),
-                    subtitle: const Text("R\$ 15,08"),
+                    subtitle: const Text("R\$ 15,80"),
                     trailing: Checkbox(
                       value: meiaCheck,
                       onChanged: (value) {
@@ -129,7 +200,7 @@ class _InformationsState extends State<Informations> {
                   ),
                   ListTile(
                     title: const Text("ESTUDANTE"),
-                    subtitle: const Text("R\$ 12,08"),
+                    subtitle: const Text("R\$ 12,80"),
                     trailing: Checkbox(
                       value: estudanteCheck,
                       onChanged: (value) {
@@ -140,7 +211,10 @@ class _InformationsState extends State<Informations> {
                         });
                       },
                     ),
-                  ),
+                  ),                  
+                  ElevatedButton(onPressed: (){
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => const Assento(),));
+                  }, child: const Text("Próximo"))
                 ],
               ),
             ),
