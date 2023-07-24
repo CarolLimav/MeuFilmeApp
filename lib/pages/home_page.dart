@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../data/filme_data.dart';
 import '../models/filme_model.dart';
+import 'combos_page.dart';
 import 'detalhes_filme_page.dart';
 
 void main() {
@@ -19,7 +20,9 @@ class MyApp extends StatelessWidget {
 }
 
 class HomePage extends StatelessWidget {
+
   const HomePage({super.key});
+  
 
   @override
   Widget build(BuildContext context) {
@@ -27,15 +30,16 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         title: const Center(child: Text('Filmes em cartaz')),
         actions: [
-          IconButton(onPressed: (){}, 
+          IconButton(onPressed: (){
+            Navigator.push(context, MaterialPageRoute(builder: (context) => const CombosPage(),));
+          }, 
           icon: const Icon(
             Icons.shopping_cart,
             color: Colors.white,
-          
           )
-          )
-        ],
-      ),
+        )
+      ],
+    ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: GridView.builder(

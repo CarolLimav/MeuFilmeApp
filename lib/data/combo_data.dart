@@ -11,14 +11,14 @@ final listaDeCombos = [
    Combo(
     id: 'c2', 
    nome: 'Combo Duplo Salgada',
-   imageUrl: 'https://ingresso-a.akamaihd.net/checkout/img/bomboniere/uci/combo_duplo_salgada.png', 
+   imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQFS1ISAYEHcnm2DzZMJS7Q46JQNcfh_ienLQ&usqp=CAU', 
    descricao: '02 refrigerantes 700ml + 01 pipoca grande salgada',
    preco: 60.00,
    ),
   Combo(
   id: 'c3', 
   nome: 'Combo Original Salgada', 
-  imageUrl: 'https://pbs.twimg.com/media/FvUVt3hXgAAxP1H?format=jpg&name=900x900', 
+  imageUrl: 'https://www.kinoplex.com.br/bomboniere/images/doces/combo-super.jpg', 
   descricao: '1 refrigerante 1000 ml+ 1 pipoca média salgada',
   preco: 41.50,
   ),

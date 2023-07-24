@@ -7,7 +7,6 @@ class Filme{
   final String sinopse; 
   final String descricao; 
 
-  
 Filme({
   required this.descricao,
  required  this.id,
