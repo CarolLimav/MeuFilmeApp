@@ -26,6 +26,15 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Center(child: Text('Filmes em cartaz')),
+        actions: [
+          IconButton(onPressed: (){}, 
+          icon: const Icon(
+            Icons.shopping_cart,
+            color: Colors.white,
+          
+          )
+          )
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
