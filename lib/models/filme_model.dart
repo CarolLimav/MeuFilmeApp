@@ -6,6 +6,7 @@ class Filme{
   final String imageUrl; 
   final String sinopse; 
   final String descricao; 
+  bool selecionado; 
 
 Filme({
   required this.descricao,
@@ -13,6 +14,8 @@ Filme({
  required this.imageUrl,
   required this.nome,
  required this.sinopse,
+ this.selecionado = false,
+ 
 });
 }
 

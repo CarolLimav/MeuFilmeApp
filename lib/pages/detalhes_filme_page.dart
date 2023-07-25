@@ -53,11 +53,12 @@ class DetalhesFilmes extends StatelessWidget {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => const Informations(),
+                                builder: (context) => const Informations(combosSelecionados: [], valorIngresso: 12,),
                               ));
                         },
                         child: const Text(
                           "Comprar Ingresso",
+
                           style: TextStyle(color: Colors.white),
                         )),
                   ],
@@ -68,3 +69,4 @@ class DetalhesFilmes extends StatelessWidget {
     );
   }
 }
+

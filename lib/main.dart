@@ -6,6 +6,9 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
+   static int cartItemCount = 0;
+   static int filmeCount = 0; 
+
   const MyApp({super.key});
 
   @override

@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:meufilmeapp/data/combo_data.dart';
-import 'package:meufilmeapp/pages/finalizar_page.dart';
+import 'package:meufilmeapp/pages/home_page.dart';
+
+
+
 
 class CombosPage extends StatefulWidget {
+  
   const CombosPage({super.key});
 
   @override
@@ -10,7 +14,7 @@ class CombosPage extends StatefulWidget {
 }
 
 class _CombosPageState extends State<CombosPage> {
-  String botaoTexto = 'Pular';
+
 
   @override
   Widget build(BuildContext context) {
@@ -59,7 +63,7 @@ class _CombosPageState extends State<CombosPage> {
                     value: listaDeCombos[index].selecionado,
                     onChanged: (value) {
                       setState(() {
-                        listaDeCombos[index].selecionado = value;
+                        listaDeCombos[index].selecionado = value!;
                       });
                     }),
               );
@@ -67,11 +71,21 @@ class _CombosPageState extends State<CombosPage> {
       ),
       floatingActionButton: ElevatedButton(
         onPressed: () {
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => Finalizar()));
-        },
-        child: const Text('Finalizar'),
-      ),
-    );
+           MyApp.cartItemCount = listaDeCombos.where((combo) => combo.selecionado).length;
+
+          
+      
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const HomePage(
+          ),
+        )
+      );
+        
+      }, child: const Text('Finalizar compra'),
+      )
+      );
   }
 }
+

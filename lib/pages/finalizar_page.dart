@@ -1,14 +1,9 @@
-// import 'package:flutter/material.dart';
-
-// class FinalizarPage extends StatelessWidget {
-//   const FinalizarPage({super.key});
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return const Placeholder();
-//   }
-// }
 import 'package:flutter/material.dart';
+
+import '../data/combo_data.dart';
+import '../data/filme_data.dart';
+import '../models/combo_model.dart';
+import '../models/filme_model.dart';
 
 class FinalizarPage extends StatelessWidget {
   final String filme;
@@ -37,6 +32,7 @@ class FinalizarPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+     
     return Center(
       child: Padding(
         padding: EdgeInsets.all(16.0),
@@ -46,7 +42,7 @@ class FinalizarPage extends StatelessWidget {
           // shrinkWrap: true,
           children: [
             Text(
-              'Carrinho',
+              'Minhas Compras',
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
             SizedBox(height: 16),
@@ -93,10 +89,10 @@ class Finalizar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Finalizar'),
+        title: Text('Carrinho'),
       ),
       body: FinalizarPage(
-        filme: 'Nome do Filme',
+        filme: 'Nome do Filme' ,
         urlFilme:
             'https://pbs.twimg.com/media/FvUVt3hXgAAxP1H?format=jpg&name=900x900',
         data: '__/__/__',

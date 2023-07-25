@@ -1,14 +1,19 @@
 import 'package:flutter/material.dart';
 import '../data/filme_data.dart';
 import '../models/filme_model.dart';
-import 'combos_page.dart';
+import 'cart_page.dart';
+
 import 'detalhes_filme_page.dart';
+
 
 void main() {
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  static int cartItemCount = 0;
+  static int filmeCount= 0;
+
   const MyApp({super.key});
 
   @override
@@ -31,15 +36,32 @@ class HomePage extends StatelessWidget {
         title: const Center(child: Text('Filmes em cartaz')),
         actions: [
           IconButton(onPressed: (){
-            // Navigator.push(context, MaterialPageRoute(builder: (context) => const CombosPage(),));
+            // Navigator.push(context, MaterialPageRoute(builder: (context) => CartPage()));
+              Navigator.push(context, MaterialPageRoute(builder: (context) => CartPage()));
           }, 
           icon: const Icon(
             Icons.shopping_cart,
             color: Colors.white,
-          )
-        )
-      ],
-    ),
+          ),
+        ),
+        if (MyApp.cartItemCount > 0)
+                Positioned(
+                  top: 8,
+                  right: 8,
+                  child: CircleAvatar(
+                    backgroundColor: Colors.red,
+                    radius: 10,
+                    child: Text(
+                      MyApp.cartItemCount.toString(),
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ),
+            ],
+          ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: GridView.builder(

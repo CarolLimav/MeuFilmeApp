@@ -3,6 +3,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:meufilmeapp/models/combo_model.dart';
 import 'package:meufilmeapp/pages/assento_page.dart';
 
 class Week {
@@ -12,7 +13,7 @@ class Week {
 }
 
 class Informations extends StatefulWidget {
-  const Informations({super.key});
+  const Informations({super.key, required List<Combo> combosSelecionados, required double valorIngresso});
 
   @override
   State<Informations> createState() => _InformationsState();
