@@ -4,6 +4,8 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
+import 'combos_page.dart';
+
 class Assento extends StatefulWidget {
   const Assento({super.key});
 
@@ -105,6 +107,7 @@ class _AssentoState extends State<Assento> {
                       message = "Selecione um Assento!";
                     } else {
                       message = "A${indice + 1}";
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => const CombosPage(),));
                     }
                     ScaffoldMessenger.of(context)
                         .showSnackBar(SnackBar(content: Text(message)));

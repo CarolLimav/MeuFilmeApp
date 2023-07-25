@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:meufilmeapp/data/combo_data.dart';
-import 'package:meufilmeapp/models/combo_model.dart';
+import 'package:meufilmeapp/pages/finalizar_page.dart';
 
-class CombosPage extends StatelessWidget {
+class CombosPage extends StatefulWidget {
   const CombosPage({ super.key});
 
+  @override
+  State<CombosPage> createState() => _CombosPageState();
+}
+
+class _CombosPageState extends State<CombosPage> {
+  String botaoTexto = 'Pular';
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -16,43 +23,54 @@ class CombosPage extends StatelessWidget {
         child: ListView.builder(
             itemCount: listaDeCombos.length,
             itemBuilder: (context, index) {
-              Combo combo = listaDeCombos[index];
-              return Card(
-              margin: const EdgeInsets.all(8),
-              color: Colors.amberAccent,
-              elevation: 2,
-              child: Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    Container(
-                      height: 180,
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                          image: NetworkImage(combo.imageUrl),
-                          fit: BoxFit.cover,
-                        ),
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8),
-                      child: Center(
-                        child: Text(
-                          combo.nome,
-                          style: const TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                               color: Colors.black
-                              ),
-                        ),
-                      ),
-                    ),
-                  ],
+              // Combo combo = listaDeCombos[index];
+              return ListTile(
+              leading: SizedBox(
+                width: 80,
+                height: 80,
+                child: Image.network(listaDeCombos[index].imageUrl,
+                fit: BoxFit.cover,
                 ),
+                
+                ),
+              title: Text(listaDeCombos[index].nome,
+              style: const TextStyle(fontWeight: FontWeight.bold),
+              ),
+              subtitle: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+
+                  Expanded(
+                    child: Text(listaDeCombos[index].descricao,
+                    textAlign: TextAlign.left,
+                    ),
+                    ),
+                  Text('R\$ ${listaDeCombos[index].preco.toStringAsFixed(2)}',
+                  style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16, 
+                  ),
+                  ),
+                ],
+              ),
+              trailing: Checkbox(
+                value: listaDeCombos[index].selecionado, 
+                onChanged: (value) {  
+                  setState(() {    
+                   listaDeCombos[index].selecionado = value;
+                 
+                  });
+                  }
               ),
             );
+            
+       
         }),
+      ),
+      floatingActionButton: ElevatedButton(
+        onPressed: (){
+            Navigator.push(context, MaterialPageRoute(builder:(context) => const FinalizarPage() ));
+        }, child: const Text('Finalizar'),
       ),
     );
   }

@@ -31,7 +31,7 @@ class HomePage extends StatelessWidget {
         title: const Center(child: Text('Filmes em cartaz')),
         actions: [
           IconButton(onPressed: (){
-            Navigator.push(context, MaterialPageRoute(builder: (context) => const CombosPage(),));
+            // Navigator.push(context, MaterialPageRoute(builder: (context) => const CombosPage(),));
           }, 
           icon: const Icon(
             Icons.shopping_cart,
@@ -48,55 +48,56 @@ class HomePage extends StatelessWidget {
           itemCount: listaDeFilmes.length,
           itemBuilder: (context, index) {
             Filme filme = listaDeFilmes[index];
-            return Card(
-              margin: const EdgeInsets.all(8),
-              color: Colors.amberAccent,
-              elevation: 2,
-              child: Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    Expanded(
-
-                      child: SingleChildScrollView(
-                        child: GestureDetector(
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) =>
-                                      DetalhesFilmes(filme: filme),
+            return GestureDetector(
+                  onTap: () {
+                   Navigator.push(
+                      context,
+                       MaterialPageRoute(
+                          builder: (context) =>
+                            DetalhesFilmes(filme: filme),
+                            ),
+                        );
+                    },       
+              child: Card(
+                margin: const EdgeInsets.all(8),
+                color: Colors.amberAccent,
+                elevation: 2,
+                child: Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      Expanded(
+                        child: SingleChildScrollView(
+                              child: Container(
+                                height: 180,
+                                decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                    image: NetworkImage(filme.imageUrl),
+                                    fit: BoxFit.cover,
+                                  ),
+                                  borderRadius: BorderRadius.circular(12),
                                 ),
-                              );
-                            },
-                            child: Container(
-                              height: 180,
-                              decoration: BoxDecoration(
-                                image: DecorationImage(
-                                  image: NetworkImage(filme.imageUrl),
-                                  fit: BoxFit.cover,
-                                ),
-                                borderRadius: BorderRadius.circular(12),
-                              ),
-                            )),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8),
-                      child: Center(
-                        child: Text(
-                          filme.nome,
-                          style: const TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                              // color: Colors.black87,
-                              
-                               color: Color.fromARGB(255, 84, 177, 253)
-                              ),
+                             // )
+                            ),
                         ),
                       ),
-                    ),
-                  ],
+                      Padding(
+                        padding: const EdgeInsets.all(8),
+                        child: Center(
+                          child: Text(
+                            filme.nome,
+                            style: const TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                                // color: Colors.black87,
+                                
+                                 color: Color.fromARGB(255, 84, 177, 253)
+                                ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             );
