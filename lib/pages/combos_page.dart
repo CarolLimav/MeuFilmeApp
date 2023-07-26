@@ -75,6 +75,7 @@ class _CombosPageState extends State<CombosPage> {
           onPressed: () {
             if(indice > 0 ){
             widget.ingresso.valor = listaDeCombos[indice].preco! +  widget.ingresso.valor!; 
+            widget.ingresso.nomeCombo = listaDeCombos[indice].nome; 
             }
             MyApp.cartItemCount = 1;
             MyApp.listIngresso.add(widget.ingresso); 

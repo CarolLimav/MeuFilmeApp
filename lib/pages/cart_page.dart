@@ -1,48 +1,48 @@
 import 'package:flutter/material.dart';
 import 'package:meufilmeapp/data/filme_data.dart';
+import 'package:meufilmeapp/pages/home_page.dart';
 import '../data/combo_data.dart';
 import '../models/combo_model.dart';
 import '../models/filme_model.dart';
+import '../models/ingresso_model.dart';
 
 class CartPage extends StatelessWidget {
-  
-  const CartPage({super.key});
+   
+
+   CartPage({super.key, });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context ) {
+   var listaIngresso = MyApp.listIngresso; 
     return Scaffold(
       appBar: AppBar(
         title: const Text('Minhas Compras'),
       ),
       body: ListView.builder(
-        itemCount: listaDeCombos.length,
+        itemCount: listaIngresso.length,
         itemBuilder: (context, index) {
-          Combo combo = listaDeCombos[index];
-          Filme filme = listaDeFilmes[index]; 
-          if (combo.selecionado) {
             return ListTile(
               leading: SizedBox(
                 width: 80,
                 height: 80,
                 child: Image.network(
-                  filme.imageUrl,
+                  listaIngresso[index].imageUrlFilme!,
                   fit: BoxFit.cover,
                 ),
               ),
 
-              title:   Text('Filme: ${filme.nome}'), 
+              title:   Text('Filme: ${listaIngresso[index].nomeFilme}'), 
               subtitle: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Expanded(
-                    child: Text(
-                combo.nome,
+                    child: Text(listaIngresso[index].nomeCombo == null? '': listaIngresso[index].nomeCombo!,
                 style: const TextStyle(fontWeight: FontWeight.bold),
               ),
 
                   ),              
                   Text(
-                    'R\$ ${combo.preco?.toStringAsFixed(2)}',
+                    'Total : R\$ ${listaIngresso[index].valor}',
                     style: const TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 16,
@@ -52,9 +52,7 @@ class CartPage extends StatelessWidget {
                 ],
               ),
             );
-          } else {
-            return Container(); // Retorna um widget vazio caso o combo não esteja selecionado
-          }
+         
         },
       ),
     );

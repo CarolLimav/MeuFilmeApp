@@ -53,6 +53,7 @@ class DetalhesFilmes extends StatelessWidget {
                         onPressed: () {
                           Ingresso ingresso = Ingresso();
                           ingresso.nomeFilme = filme.nome;
+                          ingresso.imageUrlFilme = filme.imageUrl; 
                           Navigator.push(
                               context,
                               MaterialPageRoute(
