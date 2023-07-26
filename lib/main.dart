@@ -11,8 +11,6 @@ class MyApp extends StatelessWidget {
    static int cartItemCount = 0;
    static int filmeCount = 0; 
     static List<Ingresso> listaIngresso = [];
-    static int sla = 0; 
-
   const MyApp({super.key});
 
   @override
@@ -22,6 +20,9 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(primarySwatch: Colors.amber),
       home: const HomePage(),
       debugShowCheckedModeBanner: false,
+      routes: {
+        '/home' : (context) => const HomePage(),
+      },
     );
   }
 }

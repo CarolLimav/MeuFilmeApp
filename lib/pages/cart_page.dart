@@ -1,16 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:meufilmeapp/data/filme_data.dart';
 import 'package:meufilmeapp/pages/finalizar_page.dart';
 import 'package:meufilmeapp/pages/home_page.dart';
-import '../data/combo_data.dart';
-import '../models/combo_model.dart';
-import '../models/filme_model.dart';
-import '../models/ingresso_model.dart';
-
 class CartPage extends StatelessWidget {
    
 
-   CartPage({super.key, });
+  const CartPage({super.key, });
 
   @override
   Widget build(BuildContext context ) {

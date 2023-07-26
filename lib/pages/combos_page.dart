@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
 import 'package:meufilmeapp/data/combo_data.dart';
 import 'package:meufilmeapp/models/ingresso_model.dart';
@@ -73,17 +75,19 @@ class _CombosPageState extends State<CombosPage> {
         ),
         floatingActionButton: ElevatedButton(
           onPressed: () {
-            if(indice > 0 ){
-            widget.ingresso.valor = listaDeCombos[indice].preco! +  widget.ingresso.valor!; 
-            widget.ingresso.nomeCombo = listaDeCombos[indice].nome; 
+            if(indice >= 0 ){
+              widget.ingresso.valor = listaDeCombos[indice].preco! +  widget.ingresso.valor!; 
+              widget.ingresso.nomeCombo = listaDeCombos[indice].nome; 
+              listaDeCombos[indice].selecionado = !listaDeCombos[indice].selecionado; 
             }
             MyApp.cartItemCount = 1;
             MyApp.listIngresso.add(widget.ingresso); 
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const HomePage(),
-                ));
+            Navigator.of(context).pushNamedAndRemoveUntil('/home', (Route<dynamic> route) => false);
+            // Navigator.push(
+            //     context,
+            //     MaterialPageRoute(
+            //       builder: (context) => const HomePage(),
+            //     ));
           },
           child: const Text('Próximo'),
         ));

@@ -1,12 +1,12 @@
-import 'dart:js_interop';
+
+// ignore_for_file: must_be_immutable
 
 import 'package:flutter/material.dart';
 
-import '../main.dart';
 import '../models/ingresso_model.dart';
 
 class FinalizarPage extends StatelessWidget {
-  Ingresso ingresso; 
+  Ingresso ingresso;
   // final String filme;
   // final String urlFilme;
   // final String data;
@@ -18,30 +18,28 @@ class FinalizarPage extends StatelessWidget {
   // final String comboValor;
   // final String total;
 
-   FinalizarPage({super.key,required this.ingresso});
-    // required this.filme,
-    // required this.urlFilme,
-    // required this.data,
-    // required this.horario,
-    // required this.assento,
-    // required this.tipo,
-    // required this.tipoValor,
-    // required this.comboName,
-    // required this.comboValor,
-    // required this.total,
+  FinalizarPage({super.key, required this.ingresso});
+  // required this.filme,
+  // required this.urlFilme,
+  // required this.data,
+  // required this.horario,
+  // required this.assento,
+  // required this.tipo,
+  // required this.tipoValor,
+  // required this.comboName,
+  // required this.comboValor,
+  // required this.total,
 
   @override
   Widget build(BuildContext context) {
-    
     return Scaffold(
-        appBar: AppBar(
+      appBar: AppBar(
         title: const Center(child: Text('Comprovante')),
       ),
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: ListView(
-    
             // mainAxisAlignment: MainAxisAlignment.center,
             // crossAxisAlignment: CrossAxisAlignment.center,
             // shrinkWrap: true,
@@ -64,16 +62,45 @@ class FinalizarPage extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 16),
-              Center(child: Text('Filme: ${ingresso.nomeFilme}', style: TextStyle(fontWeight: FontWeight.bold),)),
-              const SizedBox(height: 16),
-              Center(child: Text('Data: ${ingresso.horario}', style: TextStyle(fontWeight: FontWeight.bold),)),
-              const SizedBox(height: 16),
-              Center(child: Text('Assento: ${ingresso.assento}', style: TextStyle(fontWeight: FontWeight.bold))),            
-              const SizedBox(height: 16),
-              Center(child: Text('Total: ${ingresso.valor}', style: TextStyle(fontWeight: FontWeight.bold))),
-              const SizedBox(height: 32),
-              Center(child: const Text('Apresente esse comprovante na entrada do cinema. ')),     
-               Center(child: const Text('Bom filme!')),              
+              Container(
+                width: 500,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20.0),
+                  color: const Color.fromARGB(255, 250, 236, 236),
+                ),
+                child: Column(
+                  children: [
+                    const SizedBox(height: 16),
+                    Center(
+                        child: Text(
+                      'Filme: ${ingresso.nomeFilme}',
+                      style: const TextStyle(fontWeight: FontWeight.bold),
+                    )),
+                    const SizedBox(height: 16),
+                    Center(
+                        child: Text(
+                      'Data: ${ingresso.horario}',
+                      style: const TextStyle(fontWeight: FontWeight.bold),
+                    )),
+                    const SizedBox(height: 16),
+                    Center(
+                        child: Text('Assento: ${ingresso.assento}',
+                            style:
+                                const TextStyle(fontWeight: FontWeight.bold))),
+                    const SizedBox(height: 16),
+                    Center(
+                        child: Text('Total: ${ingresso.valor}',
+                            style:
+                                const TextStyle(fontWeight: FontWeight.bold))),
+                    const SizedBox(height: 32),
+                    const Center(
+                        child: Text(
+                            'Apresente esse comprovante na entrada do cinema. ')),
+                    const Center(child: Text('Bom filme!')),
+                    const SizedBox(height: 32),
+                  ],
+                ),
+              ),
             ],
           ),
         ),
