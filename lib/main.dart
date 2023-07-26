@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:meufilmeapp/pages/home_page.dart';
 
+import 'models/ingresso_model.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -8,6 +10,8 @@ void main() {
 class MyApp extends StatelessWidget {
    static int cartItemCount = 0;
    static int filmeCount = 0; 
+    static List<Ingresso> listaIngresso = [];
+    static int sla = 0; 
 
   const MyApp({super.key});
 

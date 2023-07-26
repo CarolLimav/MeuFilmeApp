@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:meufilmeapp/data/combo_data.dart';
+import 'package:meufilmeapp/models/ingresso_model.dart';
 import 'package:meufilmeapp/pages/home_page.dart';
 
 class CombosPage extends StatefulWidget {
-  const CombosPage({super.key});
+  Ingresso ingresso; 
+  CombosPage({super.key, required this.ingresso});
 
   @override
   State<CombosPage> createState() => _CombosPageState();
 }
 
 class _CombosPageState extends State<CombosPage> {
+  int indice = -1; 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,7 +48,7 @@ class _CombosPageState extends State<CombosPage> {
                         ),
                       ),
                       Text(
-                        'R\$ ${listaDeCombos[index].preco.toStringAsFixed(2)}',
+                        'R\$ ${listaDeCombos[index].preco?.toStringAsFixed(2)}',
                         style: const TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 16,
@@ -53,10 +57,15 @@ class _CombosPageState extends State<CombosPage> {
                     ],
                   ),
                   trailing: Checkbox(
+
                       value: listaDeCombos[index].selecionado,
                       onChanged: (value) {
                         setState(() {
                           listaDeCombos[index].selecionado = value!;
+                          if(indice >= 0 ){
+                            listaDeCombos[indice].selecionado = !listaDeCombos[indice].selecionado; 
+                          }
+                          indice = index; 
                         });
                       }),
                 );
@@ -64,8 +73,12 @@ class _CombosPageState extends State<CombosPage> {
         ),
         floatingActionButton: ElevatedButton(
           onPressed: () {
-            MyApp.cartItemCount = 
-                listaDeCombos.where((combo) => combo.selecionado).length;
+            if(indice > 0 ){
+            widget.ingresso.valor = listaDeCombos[indice].preco! +  widget.ingresso.valor!; 
+            }
+             MyApp.cartItemCount = 1;
+          
+ 
             Navigator.push(
                 context,
                 MaterialPageRoute(

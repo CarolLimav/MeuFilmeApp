@@ -112,7 +112,7 @@ class _AssentoState extends State<Assento> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const CombosPage(),
+                            builder: (context) => CombosPage(ingresso: widget.ingresso,),
                           ));
                     }
                   },

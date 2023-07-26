@@ -3,12 +3,12 @@
 class Combo{
 final String id;
 final String nome; 
-final double preco;
+double? preco;
 final String descricao;
 final String imageUrl;
 bool selecionado;
 
 
-Combo({required this.id, required this.descricao, required this.preco, required this.imageUrl, required this.nome, this.selecionado = false});
+Combo({required this.id, required this.descricao,  required this.preco, required this.imageUrl, required this.nome, this.selecionado = false});
 
 }
