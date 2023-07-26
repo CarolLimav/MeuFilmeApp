@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:meufilmeapp/models/ingresso_model.dart';
 import '../data/filme_data.dart';
 import '../models/filme_model.dart';
 import 'cart_page.dart';
@@ -13,7 +14,7 @@ void main() {
 class MyApp extends StatelessWidget {
   static int cartItemCount = 0;
   static int filmeCount= 0;
-
+  static List<Ingresso> listIngresso = [];
   const MyApp({super.key});
 
   @override

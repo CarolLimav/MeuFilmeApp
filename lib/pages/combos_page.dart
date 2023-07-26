@@ -76,16 +76,15 @@ class _CombosPageState extends State<CombosPage> {
             if(indice > 0 ){
             widget.ingresso.valor = listaDeCombos[indice].preco! +  widget.ingresso.valor!; 
             }
-             MyApp.cartItemCount = 1;
-          
- 
+            MyApp.cartItemCount = 1;
+            MyApp.listIngresso.add(widget.ingresso); 
             Navigator.push(
                 context,
                 MaterialPageRoute(
                   builder: (context) => const HomePage(),
                 ));
           },
-          child: const Text('Finalizar compra'),
+          child: const Text('Próximo'),
         ));
   }
 }
