@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:meufilmeapp/models/ingresso_model.dart';
 import 'package:meufilmeapp/pages/informations_page.dart';
 import '../models/filme_model.dart';
 
@@ -50,11 +51,12 @@ class DetalhesFilmes extends StatelessWidget {
                   children: [
                     ElevatedButton(
                         onPressed: () {
+                          Ingresso ingresso = Ingresso();
+                          ingresso.nomeFilme = filme.nome;
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => const Informations(combosSelecionados: [], valorIngresso: 12,),
-                              ));
+                                builder: (context) => Informations(ingresso: ingresso,)));
                         },
                         child: const Text(
                           "Comprar Ingresso",

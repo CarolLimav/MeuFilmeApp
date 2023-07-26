@@ -1,19 +1,24 @@
-// ignore_for_file: file_names
-
-import 'dart:math';
-
 import 'package:flutter/material.dart';
-import 'package:meufilmeapp/models/combo_model.dart';
 import 'package:meufilmeapp/pages/assento_page.dart';
+
+import '../models/ingresso_model.dart';
+
+class Horarios {
+  String valor;
+  bool select;
+  Horarios(this.valor, this.select);
+}
 
 class Week {
   late bool select;
   late String day;
-  Week({required this.select, required this.day});
+  List<Horarios> horarios;
+  Week({required this.select, required this.day, required this.horarios});
 }
 
 class Informations extends StatefulWidget {
-  const Informations({super.key, required List<Combo> combosSelecionados, required double valorIngresso});
+  Ingresso ingresso;
+  Informations({super.key, required this.ingresso});
 
   @override
   State<Informations> createState() => _InformationsState();
@@ -21,23 +26,14 @@ class Informations extends StatefulWidget {
 
 class _InformationsState extends State<Informations> {
   List<Week> days = [];
-  List<String> horarios = [];
+  String dia = '';
+  String? horario;
   int indice = -1;
+  int indice2 = -1;
   bool? inteiraCheck = false;
-  List<String> horas = [
-    "18:00",
-    "19:30",
-    "21:30",
-    "22:10",
-    "19:10",
-    "19:20",
-    "20:05",
-    "23:00",
-    "20:30",
-    "21:45"
-  ];
   bool? meiaCheck = false;
   bool? estudanteCheck = false;
+  double price = 0.0;
 
   @override
   void initState() {
@@ -46,22 +42,73 @@ class _InformationsState extends State<Informations> {
   }
 
   void getDays() {
-    days.add(Week(select: false, day: "SEG"));
-    days.add(Week(select: false, day: "TER"));
-    days.add(Week(select: false, day: "QUA"));
-    days.add(Week(select: false, day: "QUI"));
-    days.add(Week(select: false, day: "SEX"));
-    days.add(Week(select: false, day: "SAB"));
-    days.add(Week(select: false, day: "DOM"));
-  }
-
-  void changeData() {
-    horarios.clear();
-    Random random = Random();
-    int count = random.nextInt(5) + 2;
-    for (var i = 0; i < count; i++) {
-      horarios.add(horas[random.nextInt(10)]);
-    }
+    days.add(Week(select: false, day: "SEG", horarios: [
+      Horarios("18:00", false),
+      Horarios("19:30", false),
+      Horarios("21:30", false),
+      Horarios("23:00", false),
+    ]));
+    days.add(Week(select: false, day: "TER", horarios: [
+      Horarios("18:20", false),
+      Horarios("19:45", false),
+      Horarios("21:15", false),
+      Horarios("22:55", false),
+    ]));
+    days.add(Week(select: false, day: "QUA", horarios: [
+      Horarios("18:15", false),
+      Horarios("15:45", false),
+      Horarios("21:30", false),
+      Horarios("20:05", false),
+      Horarios("23:15", false),
+    ]));
+    days.add(Week(select: false, day: "QUI", horarios: [
+      Horarios("18:45", false),
+      Horarios("19:30", false),
+      Horarios("21:30", false),
+      Horarios("22:10", false),
+      Horarios("19:10", false),
+      Horarios("19:55", false),
+      Horarios("23:55", false),
+      Horarios("23:00", false),
+      Horarios("23:30", false),
+      Horarios("17:00", false),
+    ]));
+    days.add(Week(select: false, day: "SEX", horarios: [
+      Horarios("18:00", false),
+      Horarios("19:30", false),
+      Horarios("21:30", false),
+      Horarios("21:45", false),
+      Horarios("19:10", false),
+      Horarios("19:25", false),
+      Horarios("20:05", false),
+      Horarios("23:00", false),
+      Horarios("20:30", false),
+      Horarios("19:45", false),
+    ]));
+    days.add(Week(select: false, day: "SAB", horarios: [
+      Horarios("19:00", false),
+      Horarios("19:30", false),
+      Horarios("21:30", false),
+      Horarios("22:10", false),
+      Horarios("19:10", false),
+      Horarios("19:45", false),
+      Horarios("20:45", false),
+      Horarios("23:00", false),
+      Horarios("20:30", false),
+      Horarios("21:45", false),
+    ]));
+    days.add(Week(select: false, day: "DOM", horarios: [
+      Horarios("18:00", false),
+      Horarios("21:30", false),
+      Horarios("21:30", false),
+      Horarios("22:10", false),
+      Horarios("19:10", false),
+      Horarios("19:55", false),
+      Horarios("20:05", false),
+      Horarios("22:10", false),
+      Horarios("21:30", false),
+      Horarios("23:45", false),
+    ]));
   }
 
   @override
@@ -95,7 +142,8 @@ class _InformationsState extends State<Informations> {
                           days[indice].select = !days[indice].select;
                         }
                         indice = index;
-                        changeData();
+                        indice2 = -1;
+                        dia = days[index].day;
                       }
                     });
                   },
@@ -125,7 +173,7 @@ class _InformationsState extends State<Informations> {
                     borderRadius: BorderRadius.circular(20.0),
                     color: Colors.yellow),
                 child: const Center(
-                  child:  Text(
+                  child: Text(
                     "Horários",
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
@@ -141,27 +189,41 @@ class _InformationsState extends State<Informations> {
                   borderRadius: BorderRadius.circular(20.0),
                   color: const Color.fromARGB(255, 250, 236, 236),
                 ),
-                child: horarios.isEmpty
+                child: indice == -1
                     ? const Center(
                         child: Text("Escolha o Dia"),
                       )
                     : ListView.builder(
                         shrinkWrap: true,
                         scrollDirection: Axis.horizontal,
-                        itemCount: horarios.length,
+                        itemCount: days[indice].horarios.length,
                         itemBuilder: (context, index) => GestureDetector(
-                          onTap: () {},
+                          onTap: () {
+                            setState(() {
+                              days[indice].horarios[index].select =
+                                  !days[indice].horarios[index].select;
+                              if (indice2 >= 0) {
+                                days[indice].horarios[indice2].select =
+                                    !days[indice].horarios[indice2].select;
+                              }
+                              indice2 = index;
+                              horario = days[indice].horarios[index].valor;
+                            });
+                          },
                           child: Padding(
                             padding: const EdgeInsets.all(10.0),
                             child: Container(
                               width: 50,
                               height: 25,
                               decoration: BoxDecoration(
-                                border: Border.all(),
-                                borderRadius: BorderRadius.circular(5.0),
-                                color: Colors.white
-                              ),
-                              child: Center(child: Text(horarios[index])),
+                                  border: Border.all(),
+                                  borderRadius: BorderRadius.circular(5.0),
+                                  color: days[indice].horarios[index].select
+                                      ? Colors.blue
+                                      : Colors.white),
+                              child: Center(
+                                  child:
+                                      Text(days[indice].horarios[index].valor)),
                             ),
                           ),
                         ),
@@ -181,6 +243,7 @@ class _InformationsState extends State<Informations> {
                           inteiraCheck = value;
                           meiaCheck = false;
                           estudanteCheck = false;
+                          price = 30.16;
                         });
                       },
                     ),
@@ -195,6 +258,7 @@ class _InformationsState extends State<Informations> {
                           meiaCheck = value;
                           inteiraCheck = false;
                           estudanteCheck = false;
+                          price = 15.80;
                         });
                       },
                     ),
@@ -209,13 +273,31 @@ class _InformationsState extends State<Informations> {
                           estudanteCheck = value;
                           inteiraCheck = false;
                           meiaCheck = false;
+                          price = 12.80;
                         });
                       },
                     ),
-                  ),                  
-                  ElevatedButton(onPressed: (){
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => const Assento(),));
-                  }, child: const Text("Próximo"))
+                  ),
+                  ElevatedButton(
+                      onPressed: () {
+                        String message = '';
+                        if (price == 0.0) message = "Selecione o ingresso!\n";
+                        if (dia.isEmpty) message += "Selecione o dia!\n";
+                        if (indice2 == -1) message += "Selecione o horário!";
+                        if (message.isNotEmpty) {
+                          ScaffoldMessenger.of(context)
+                              .showSnackBar(SnackBar(content: Text(message)));
+                        } else {
+                          widget.ingresso.valor = price;
+                          widget.ingresso.horario = "$dia - $horario";
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) =>  Assento(ingresso: widget.ingresso),
+                              ));
+                        }
+                      },
+                      child: const Text("Próximo"))
                 ],
               ),
             ),

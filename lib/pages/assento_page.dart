@@ -1,13 +1,15 @@
-// ignore_for_file: library_private_types_in_public_api
+// ignore_for_file: library_private_types_in_public_api, must_be_immutable
 
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:meufilmeapp/models/ingresso_model.dart';
 
 import 'combos_page.dart';
 
 class Assento extends StatefulWidget {
-  const Assento({super.key});
+  Ingresso ingresso;
+  Assento({super.key, required this.ingresso});
 
   @override
   _AssentoState createState() => _AssentoState();
@@ -102,17 +104,19 @@ class _AssentoState extends State<Assento> {
             children: [
               ElevatedButton(
                   onPressed: () {
-                    String message;
                     if (indice < 0) {
-                      message = "Selecione um Assento!";
+                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                          content: Text("Selecione um Assento!")));
                     } else {
-                      message = "A${indice + 1}";
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => const CombosPage(),));
+                      widget.ingresso.assento = "A${indice + 1}";
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const CombosPage(),
+                          ));
                     }
-                    ScaffoldMessenger.of(context)
-                        .showSnackBar(SnackBar(content: Text(message)));
                   },
-                  child: const Text("Escolher Assento"))
+                  child: const Text("Próximo"))
             ],
           ),
         ],

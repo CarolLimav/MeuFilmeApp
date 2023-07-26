@@ -1,10 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../data/combo_data.dart';
-import '../data/filme_data.dart';
-import '../models/combo_model.dart';
-import '../models/filme_model.dart';
-
 class FinalizarPage extends StatelessWidget {
   final String filme;
   final String urlFilme;
@@ -17,7 +12,7 @@ class FinalizarPage extends StatelessWidget {
   final String comboValor;
   final String total;
 
-  FinalizarPage({
+  const FinalizarPage({super.key, 
     required this.filme,
     required this.urlFilme,
     required this.data,
@@ -35,17 +30,17 @@ class FinalizarPage extends StatelessWidget {
      
     return Center(
       child: Padding(
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         child: ListView(
           // mainAxisAlignment: MainAxisAlignment.center,
           // crossAxisAlignment: CrossAxisAlignment.center,
           // shrinkWrap: true,
           children: [
-            Text(
+            const Text(
               'Minhas Compras',
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             Center(
               child: Container(
                 height: 450,
@@ -58,22 +53,22 @@ class FinalizarPage extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             Center(child: Text('Filme: $filme')),
             Center(child: Text('Data: $data')),
             Center(child: Text('Horário: $horario')),
             Center(child: Text('Assento: $assento')),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             Center(child: Text('$tipo: $tipoValor')),
             Center(child: Text('$comboName: $comboValor')),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             Center(child: Text('Total: $total')),
-            SizedBox(height: 32),
+            const SizedBox(height: 32),
             ElevatedButton(
               onPressed: () {
                 // Lógica para finalizar a compra aqui
               },
-              child: Text('Finalizar Compra'),
+              child: const Text('Finalizar Compra'),
             ),
           ],
         ),
@@ -85,13 +80,15 @@ class FinalizarPage extends StatelessWidget {
 // void main() => runApp(MyApp());
 
 class Finalizar extends StatelessWidget {
+  const Finalizar({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Carrinho'),
+        title: const Text('Carrinho'),
       ),
-      body: FinalizarPage(
+      body: const FinalizarPage(
         filme: 'Nome do Filme' ,
         urlFilme:
             'https://pbs.twimg.com/media/FvUVt3hXgAAxP1H?format=jpg&name=900x900',
