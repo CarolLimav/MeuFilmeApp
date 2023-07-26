@@ -30,7 +30,7 @@ class _AssentoState extends State<Assento> {
     Random random = Random();
     int randomNumber = 0;
     for (int i = 0; i < 2; i++) {
-      randomNumber = random.nextInt(20);
+      randomNumber = random.nextInt(18);
       _seatStatusList[randomNumber] = false;
     }
     randomNumber++;

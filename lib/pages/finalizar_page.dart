@@ -61,7 +61,7 @@ class FinalizarPage extends StatelessWidget {
                                 const TextStyle(fontWeight: FontWeight.bold))),
                     const SizedBox(height: 16),
                     Center(
-                        child: Text('Total: ${ingresso.valor}',
+                        child: Text('Total: R\$${ingresso.valor}',
                             style:
                                 const TextStyle(fontWeight: FontWeight.bold))),
                     const SizedBox(height: 32),

@@ -74,7 +74,7 @@ class _CombosPageState extends State<CombosPage> {
               }),
         ),
         floatingActionButton: ElevatedButton(
-          onPressed: () {
+          onPressed: () async {
             if (indice >= 0) {
               widget.ingresso.valor =
                   listaDeCombos[indice].preco! + widget.ingresso.valor!;
@@ -84,10 +84,16 @@ class _CombosPageState extends State<CombosPage> {
             }
             MyApp.cartItemCount += 1;
             MyApp.listIngresso.add(widget.ingresso);
-            Navigator.of(context).pushNamedAndRemoveUntil(
-                '/home', (Route<dynamic> route) => false);
+            ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                duration: Duration(seconds: 1),
+                content: Text("Ingresso comprado com sucesso!")));
+            await Future.delayed(const Duration(milliseconds: 1600))
+                .then((value) {
+              Navigator.of(context).pushNamedAndRemoveUntil(
+                  '/home', (Route<dynamic> route) => false);
+            });
           },
-          child: const Text('Próximo'),
+          child: const Text('Comprar Ingresso'),
         ));
   }
 }
