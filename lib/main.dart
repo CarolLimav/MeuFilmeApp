@@ -10,7 +10,7 @@ void main() {
 class MyApp extends StatelessWidget {
    static int cartItemCount = 0;
    static int filmeCount = 0; 
-    static List<Ingresso> listaIngresso = [];
+   static List<Ingresso> listaIngresso = [];
   const MyApp({super.key});
 
   @override

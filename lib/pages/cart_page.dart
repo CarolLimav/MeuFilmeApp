@@ -17,7 +17,7 @@ class CartPage extends StatelessWidget {
       body: listaIngresso.isEmpty
           ? const Center(
               child: Text(
-                'Ainda não possui compras.',
+                'Você ainda não possui compras.',
                 style: TextStyle(fontSize: 18),
               ),
             )

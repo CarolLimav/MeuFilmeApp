@@ -3,7 +3,6 @@ import 'package:meufilmeapp/models/ingresso_model.dart';
 import '../data/filme_data.dart';
 import '../models/filme_model.dart';
 import 'cart_page.dart';
-
 import 'detalhes_filme_page.dart';
 
 

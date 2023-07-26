@@ -86,11 +86,6 @@ class _CombosPageState extends State<CombosPage> {
             MyApp.listIngresso.add(widget.ingresso);
             Navigator.of(context).pushNamedAndRemoveUntil(
                 '/home', (Route<dynamic> route) => false);
-            // Navigator.push(
-            //     context,
-            //     MaterialPageRoute(
-            //       builder: (context) => const HomePage(),
-            //     ));
           },
           child: const Text('Próximo'),
         ));

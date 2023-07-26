@@ -4,8 +4,7 @@ final listaDeCombos = [
   Combo(
     id: 'c1', 
     nome: 'Combo Barbie',
-  //  imageUrl: 'https://f.i.uol.com.br/fotografia/2023/06/30/1688160303649f482f44913_1688160303_3x2_md.jpg',
-  imageUrl: 'https://i1.wp.com/www.dci.com.br/wp-content/uploads/2023/06/combos-barbie.jpg',
+   imageUrl: 'https://i1.wp.com/www.dci.com.br/wp-content/uploads/2023/06/combos-barbie.jpg',
    descricao: 'O combo é composto por um balde de pipoca cor-de-rosa e uma bebida média. Na compra do combo, leve um copo exclusivo da boneca. ',
    preco: 60.00,
    ),
