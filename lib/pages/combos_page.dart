@@ -6,7 +6,7 @@ import 'package:meufilmeapp/models/ingresso_model.dart';
 import 'package:meufilmeapp/pages/home_page.dart';
 
 class CombosPage extends StatefulWidget {
-  Ingresso ingresso; 
+  Ingresso ingresso;
   CombosPage({super.key, required this.ingresso});
 
   @override
@@ -14,7 +14,7 @@ class CombosPage extends StatefulWidget {
 }
 
 class _CombosPageState extends State<CombosPage> {
-  int indice = -1; 
+  int indice = -1;
 
   @override
   Widget build(BuildContext context) {
@@ -59,15 +59,15 @@ class _CombosPageState extends State<CombosPage> {
                     ],
                   ),
                   trailing: Checkbox(
-
                       value: listaDeCombos[index].selecionado,
                       onChanged: (value) {
                         setState(() {
                           listaDeCombos[index].selecionado = value!;
-                          if(indice >= 0 ){
-                            listaDeCombos[indice].selecionado = !listaDeCombos[indice].selecionado; 
+                          if (indice >= 0) {
+                            listaDeCombos[indice].selecionado =
+                                !listaDeCombos[indice].selecionado;
                           }
-                          indice = index; 
+                          indice = index;
                         });
                       }),
                 );
@@ -75,14 +75,17 @@ class _CombosPageState extends State<CombosPage> {
         ),
         floatingActionButton: ElevatedButton(
           onPressed: () {
-            if(indice >= 0 ){
-              widget.ingresso.valor = listaDeCombos[indice].preco! +  widget.ingresso.valor!; 
-              widget.ingresso.nomeCombo = listaDeCombos[indice].nome; 
-              listaDeCombos[indice].selecionado = !listaDeCombos[indice].selecionado; 
+            if (indice >= 0) {
+              widget.ingresso.valor =
+                  listaDeCombos[indice].preco! + widget.ingresso.valor!;
+              widget.ingresso.nomeCombo = listaDeCombos[indice].nome;
+              listaDeCombos[indice].selecionado =
+                  !listaDeCombos[indice].selecionado;
             }
-            MyApp.cartItemCount = 1;
-            MyApp.listIngresso.add(widget.ingresso); 
-            Navigator.of(context).pushNamedAndRemoveUntil('/home', (Route<dynamic> route) => false);
+            MyApp.cartItemCount += 1;
+            MyApp.listIngresso.add(widget.ingresso);
+            Navigator.of(context).pushNamedAndRemoveUntil(
+                '/home', (Route<dynamic> route) => false);
             // Navigator.push(
             //     context,
             //     MaterialPageRoute(
