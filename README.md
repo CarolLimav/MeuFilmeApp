@@ -19,7 +19,7 @@ integrantes:
   - Victor Lopes dos Santos 
 
 # Telas
-![Tela Home](screenshots\pagHome.png)
+![Tela Home](C:\Users\Carol\meufilmeapp\screenshots\pagDeCompras.png)
 ![Tela de detalhes de um determinado filme](screenshots\pagDetalheFilme.png)
 ![Tela para escolher assento](screenshots\pagDeEscolherAssento.png)
 ![Tela para escolher combo](screenshots\pagDeEscolherCombo.png)
