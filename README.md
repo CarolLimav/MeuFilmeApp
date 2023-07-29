@@ -16,5 +16,12 @@ Instruções para executar:
 integrantes:
   - Caroline Maltide Lima Vitória
   - Davi Santos de Azevedo
-  - Victor Lopes dos Santos 
-
+  - Victor Lopes dos Santos
+    
+# Telas
+![Tela Home](screenshots/pagHome.png)
+![Tela de detalhes de um determinado filme](screenshots/pagDetalheFilme.png)
+![Tela para escolher assento](screenshots/pagDeEscolherAssento.png)
+![Tela para escolher combo](screenshots/pagDeEscolherCombo.png)
+![Tela de compras feitas](screenshots/pagDeCompras.png)
+![Tela com comprovante do ingresso](screenshots/pagDeComprovante.png)
